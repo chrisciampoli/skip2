@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+  <style>
+    body {
+      padding-top: 50px;
+    }
+
+    .starter-template {
+      padding: 40px 15px;
+    }
+  </style>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Skip Menu Entry</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Menus</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container">
+  <div class="starter-template">
+    <h1>Skip Menu Entry</h1>
+    <div class="bs-example" data-example-id="bordered-table">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Company Name</th>
+            <th>Food Type</th>
+            <th>Contact</th>
+            <th>Controls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Subway</td>
+            <td>Sandwhiches</td>
+            <td>http://www.subway.com</td>
+            <td>Edit | Delete</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>McDonalds</td>
+            <td>Burgers</td>
+            <td>http://www.mcdonalds.com</td>
+            <td>Edit | Delete</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Taco Bell</td>
+            <td>American Mexican</td>
+            <td>http://www.tacobell.com</td>
+            <td>Edit | Delete</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- /example -->
+  </div>
+
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{% endblock %}
