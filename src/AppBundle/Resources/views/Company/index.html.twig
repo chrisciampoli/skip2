@@ -1,0 +1,94 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .starter-template {
+            padding: 40px 15px;
+        }
+    </style>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Skip</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Companies</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="starter-template">
+            <h1>Companies</h1>
+            <div class="bs-example" data-example-id="bordered-table">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn pull-right btn-primary btn-sm" data-toggle="modal" data-target="#menuModal">
+                    Add Company
+                </button>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Food Type</th>
+                        <th>Contact</th>
+                        <th>Controls</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for company in companies %}
+                        <tr>
+                            <th scope="row">{{ company.name|title }}</th>
+                            <td>{{ company.foodtype|title }}</td>
+                            <td>{{ company.contact }}</td>
+                            <td><a href="{{ path('view_company', {'id': company.id}) }}">View</a> | Delete</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- /example -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Menu</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{{ path('create_company') }}">
+                            <div class="form-group">
+                                <label for="companyName">Company Name</label>
+                                <input type="text" class="form-control" name="companyName" id="companyName" placeholder="Subway">
+                            </div>
+                            <div class="form-group">
+                                <label for="foodType">Food Type</label>
+                                <input type="text" class="form-control" name="foodType" id="foodType" placeholder="Sandwhiches">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact (website for now)</label>
+                                <input type="text" class="form-control" name="contact" id="contact" placeholder="http://www.subway.com">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container -->
+{% endblock %}

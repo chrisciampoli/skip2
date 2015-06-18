@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>{{ company.name|title }}</h1>
+        </div>
+    </div>
+    {{ company.foodType|title }}
+    {{ company.contact|title }}
+{% endblock %}
