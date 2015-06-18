@@ -8,6 +8,9 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  */
 class Item
 {
+   /**
+    * @MongoDB\Id
+    */
     protected $id;
     protected $name;
     protected $ingredients;
