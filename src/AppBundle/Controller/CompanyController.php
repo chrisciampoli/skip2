@@ -2,6 +2,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Document\Company;
+use AppBundle\Document\Ingredient;
+use AppBundle\Document\Item;
+use AppBundle\Document\Menu;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,6 +36,16 @@ class CompanyController extends Controller
         if ($request->isMethod('post')) {
             $dm = $this->get('doctrine_mongodb')->getManager();
             $company = new Company();
+
+            $menu = new Menu();
+            $menu->setName('main');
+            $hamburger = new Item();
+            $hamburger->setName('Hamburger');
+            $patty = new Ingredient();
+            $patty->setName('beef patty');
+            $hamburger->addIngredient($patty);
+            $menu->addItem($hamburger);
+            $company->addMenu($menu);
             $company->setName($request->request->get('companyName'));
             $company->setFoodType($request->request->get('foodType'));
             $company->setContact($request->request->get('contact'));

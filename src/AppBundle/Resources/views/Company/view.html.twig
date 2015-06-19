@@ -8,4 +8,10 @@
     </div>
     {{ company.foodType|title }}
     {{ company.contact|title }}
+    {% for menu in company.menus %}
+        {{ menu.name|title }}
+        {% for item in menu.items %}
+            {{ item.name|title }}
+        {% endfor %}
+    {% endfor %}
 {% endblock %}
