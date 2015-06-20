@@ -30,7 +30,7 @@ class Company
     protected $contact;
 
     /**
-     * @MongoDB\EmbedMany(targetDocument="AppBundle\Document\Item")
+     * @MongoDB\EmbedMany(targetDocument="AppBundle\Document\Menu")
      */
     protected $menus = [];
 
@@ -129,5 +129,25 @@ class Company
     public function setMenus($menus)
     {
         $this->menus = $menus;
+    }
+
+    /**
+     * Add menu
+     *
+     * @param AppBundle\Document\Menu $menu
+     */
+    public function addMenu(\AppBundle\Document\Menu $menu)
+    {
+        $this->menus[] = $menu;
+    }
+
+    /**
+     * Remove menu
+     *
+     * @param AppBundle\Document\Menu $menu
+     */
+    public function removeMenu(\AppBundle\Document\Menu $menu)
+    {
+        $this->menus->removeElement($menu);
     }
 }
