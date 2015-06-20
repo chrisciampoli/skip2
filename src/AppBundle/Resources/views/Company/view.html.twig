@@ -9,3 +9,8 @@
     {{ company.foodType|title }}
     {{ company.contact|title }}
 {% endblock %}
+{% block javascripts%}
+<script type="text/javascript">
+      (skip.modules.fetch('company'))();
+</script>
+{% endblock %}

@@ -10,13 +10,25 @@
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript">
+            function onSkipLoad(callback) {
+                if (window.skip !== undefined && window.skip.isLoaded()) {
+                    return callback();
+                }
+                setTimeout(callback, 100);
+            }
+        </script>
+        <script type="text/javascript">
+            window.externalData = {};
+            window.preLoad = function(key, callback) {
+                window.externalData[key] = callback;
+            };
+        </script>
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}
-          <!-- Latest compiled and minified JavaScript -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        {% endblock %}
+        {% block preload %}{% endblock %}
+        <script type="text/javascript" src="/assets/js/app.js"></script>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

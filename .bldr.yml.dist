@@ -1,0 +1,138 @@
+bldr:
+    name: sctr/bang
+    description: Bang.com Application
+    profiles:
+        build:
+            description: Profile for building assets
+            jobs:
+                - installPackages
+                - buildAssets
+        watch:
+            description: Profile for watching and building assets
+            jobs:
+                - installPackages
+                - watchAssets
+        ci:
+            description: Profile for the CI Server
+            uses:
+                before:
+                    - cs
+            jobs:
+                - test
+        test:
+            description: Run tests locally
+            jobs:
+                - cleanBuild
+                - testLocal
+        lint:
+            description: Runs the Linter
+            jobs:
+                - lint
+        cs:
+            description: Runs the PHPCSer
+            jobs:
+                - phpcs
+    jobs:
+        lint:
+            description: 'Lints the files of the project'
+            tasks:
+                -
+                    type: apply
+                    timeout: 600
+                    src:
+                        - { path: [src, web, tests], files: '*.php', recursive: true] }
+                    executable: php
+                    arguments: [-l]
+                -
+                    type: apply
+                    timeout: 600
+                    src:
+                        - { path: [src/MainBundle/Resources/views], files: '*.twig', recursive: true] }
+                    executable: php
+                    arguments: [./console, twig:lint, -v]
+                -
+                    type: exec
+                    failOnError: true
+                    executable: ./console
+                    timeout: 600
+                    arguments: [-v, yaml:lint, config]
+        phpcs:
+            description: 'Runs the PHP Code Sniffer'
+            tasks:
+                -
+                    type: exec
+                    executable: php
+                    timeout: 600
+                    arguments:
+                        - bin/phpcs
+                        - --standard=phpcs.xml
+                        - --ignore=src/MainBundle/Resources/assets
+                        - --ignore=src/MainBundle/Resources/private
+                        - --report=full
+                        - src/
+        cleanBuild:
+            tasks:
+                -
+                    type: filesystem:remove
+                    continueOnError: true
+                    files: [tests/_output/, var/logs, var/cache]
+                -
+                    type: filesystem:mkdir
+                    continueOnError: true
+                    files: [tests/_output/, var/logs, var/cache]
+                -
+                    type: exec
+                    executable: chmod
+                    arguments: [-R, 2777, var/cache, var/logs]
+        test:
+            description: 'Runs the Codeception Tests'
+            tasks:
+                -
+                    type: exec
+                    executable: ./bin/codecept
+                    timeout: 600
+                    arguments:
+                        - run
+                        - -g
+                        - Complete
+        testLocal:
+            description: 'Runs the Codeception Tests locally'
+            tasks:
+                -
+                    type: exec
+                    executable: curl
+                    output: /dev/null
+                    arguments: [-I, http://dev.bang.com]
+                -
+                    type: exec
+                    executable: ./bin/codecept
+                    timeout: 600
+                    arguments:
+                        - run
+                        - --env=local
+                        - -g
+                        - dev
+        watchTest:
+            tasks:
+                -
+                    type: watch
+                    task: test
+                    src:
+                        - { path: [src, tests, app, web], files: '*', recursive: true }
+
+        destroyBuild:
+            tasks:
+                -
+                    type: filesystem:remove
+                    continueOnError: true
+                    files: [src/MainBundle/Resources/private/build]
+
+        buildAssets:
+            tasks:
+                - { type: exec, executable: npm, arguments: [run, build] }
+        watchAssets:
+            tasks:
+                - { type: exec, executable: npm, arguments: [run, watch] }
+        installPackages:
+            tasks:
+                - { type: exec, executable: bin/install }

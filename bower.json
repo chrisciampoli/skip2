@@ -1,0 +1,23 @@
+{
+    "name": "private",
+    "version": "0.0.0",
+    "homepage": "https://github.com/chrisciampoli/skip2",
+    "authors": [
+        "Chris Ciampoli <chrisciampoli@gmail.com>"
+    ],
+    "license": "proprietary",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "~3.3",
+        "bootstrap-switch": "~3.3",
+        "bootstrap-select": "~1.6",
+        "history.js": "~1.8",
+        "pace": "~1.0.2"
+    }
+}
