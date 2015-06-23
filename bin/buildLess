@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir -p web/assets/js/
+
+cp bower_components/pace/themes/blue/pace-theme-flash.css src/AppBundle/Resources/assets/less/pace.less
+cp node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css src/AppBundle/Resources/assets/less/custom_scrollbar.less
+# cp src/AppBundle/Resources/assets/less/bootstrap_variables.less bower_components/bootstrap/less/variables.less
+
+./node_modules/less/bin/lessc $1 $2
+
+cp -r bower_components/bootstrap/fonts web/assets/
+cp -r node_modules/font-awesome/fonts web/assets/
+cp -r node_modules/video.js/dist/video-js/font web/assets/
+cp -r src/AppBundle/Resources/assets/images web/assets/

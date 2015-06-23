@@ -1,0 +1,4 @@
+#!/bin/bash
+
+npm install && bin/notify 'NPM Installed'
+./node_modules/.bin/bower install && bin/notify 'Bower Installed'
