@@ -6,15 +6,11 @@
         "watch-js": "./node_modules/.bin/nodemon -e js -i src/AppBundle/Resources/assets/js/routes.js -w src/MainBundle/Resources/assets/js -x 'npm run build-js'",
         "watch-less": "./node_modules/.bin/nodemon -e less -w src/AppBundle/Resources/assets/less -x 'npm run build-less'",
         "build-js": "(mkdir -p web/assets/js/ && bin/browserify src/AppBundle/Resources/assets/js/app.js web/assets/js/app.js && bin/notify 'JS Compiled') || bin/notify 'Failure: JS Compilation'",
-        "build-js-nm":"(mkdir -p web/assets/js/ && bin/browserify src/AppBundle/Resources/assets/js/app.js web/assets/js/app.js)",
         "build-min-js": "(cat web/assets/js/app.js | ./node_modules/.bin/uglifyjs -o web/assets/js/app.min.js) || bin/notify 'Failure: JS Minification'",
-        "build-min-js-nm":"(cat web/assets/js/app.js | ./node_modules/.bin/uglifyjs -o web/assets/js/app.min.js)",
         "build-less": "(bin/buildLess src/AppBundle/Resources/assets/less/skip.less web/assets/css/skip.css && bin/notify 'CSS Compiled') || bin/notify 'Failure: CSS Compilation'",
-        "build-less-nm": "(bin/buildLess src/AppBundle/Resources/assets/less/skip.less web/assets/css/skip.css)",
         "build-min-less": "(cat web/assets/css/skip.css | ./node_modules/.bin/cleancss -o web/assets/css/bang.min.css) || bin/notify 'Failure: CSS Minification'",
-        "build-min-less-nm": "(cat web/assets/css/skip.css | ./node_modules/.bin/cleancss -o web/assets/css/bang.min.css)",
         "build": "npm run build-less & npm run build-js",
-        "prod": "(npm run build-less-nm && npm run build-min-less-nm) & (npm run build-js-nm && npm run build-min-js-nm)"
+        "prod": "(npm run build-less && npm run build-min-less) & (npm run build-js && npm run build-min-js)"
     },
     "dependencies": {
         "URIjs": "^1.15.1",
