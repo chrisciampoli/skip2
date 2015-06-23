@@ -1,6 +1,6 @@
 bldr:
-    name: sctr/bang
-    description: Bang.com Application
+    name: chrisciampoli/skip2
+    description: Potions.space Application
     profiles:
         build:
             description: Profile for building assets

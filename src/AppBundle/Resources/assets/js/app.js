@@ -4,7 +4,6 @@ window.$ = window.jQuery = require("jquery");
 window.URI = require("URIjs");
 window.bootstrap = require('bootstrap');
 window.Holder = require('holderjs');
-window.videojs = require('video.js');
 window.Pace = require('pace');
 
 window.location.uri = URI(window.location.href);

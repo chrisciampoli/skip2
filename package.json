@@ -28,8 +28,7 @@
         "react-class-helper": "^0.1.2",
         "react-di": "^0.2.3",
         "react-tap-event-plugin": "^0.1.6",
-        "store": "^1.3.17",
-        "video.js": "^4.12.8"
+        "store": "^1.3.17"
     },
     "devDependencies": {
         "babelify": "^6.1.2",
