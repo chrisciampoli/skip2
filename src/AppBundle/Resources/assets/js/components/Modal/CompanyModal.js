@@ -20,11 +20,20 @@ class CompanyModal extends Component {
                             <h4 className="modal-title" id="myModalLabel">Add Menu</h4>
                         </div>
                         <div className="modal-body">
-                          <form>
+                          <form method="post" action="/company/create">
                             <div className="form-group">
                               <label htmlFor="companyName">Company Name:</label>
-                              <input className="form-control" name="companyName" type="text" placeholder="Subway"/>
+                              <input className="form-control" name="companyName" id="companyName" type="text" placeholder="Subway"/>
                             </div>
+                            <div className="form-group">
+                              <label htmlFor="companyName">Food Type:</label>
+                              <input className="form-control" name="foodType" id="foodType" type="text" placeholder="Sandwhiches"/>
+                            </div>
+                            <div className="form-group">
+                              <label htmlFor="companyName">Contact:</label>
+                              <input className="form-control" name="contact" id="contact" type="text" placeholder="http://www.subway.com"/>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
                           </form>
                         </div>
                         <div className="modal-footer">
