@@ -6,16 +6,27 @@ class CompanyTable extends Component {
     constructor(props) {
         super(props);
         this.state =  {
-            active: this.props.active,
-            included: this.props.included
+            companies: skip.data.get('companies')
         };
     }
 
     render() {
+      var rows = $.map(this.state.companies, (item, index) => {
+          var url = '/company/'+item.id+'';
+          return (
+            <tr key={index}>
+              <td>{item.name}</td>
+              <td>{item.food_type}</td>
+              <td>{item.contact}</td>
+              <td><a href={url}>View</a></td>
+            </tr>
+          );
+        });
+
         return (
-          <div className="starter-template">
+          <div className="template">
               <h1>Companies</h1>
-              <div className="bs-example" data-example-id="bordered-table">
+              <div className="companyForm" data-example-id="bordered-table">
                   <button type="button" className="btn pull-right btn-primary btn-sm" data-toggle="modal" data-target="#menuModal">
                       Add Company
                   </button>
@@ -29,7 +40,7 @@ class CompanyTable extends Component {
                       </tr>
                       </thead>
                       <tbody>
-
+                        {rows}
                       </tbody>
                   </table>
               </div>

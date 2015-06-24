@@ -1,13 +1,24 @@
 {% extends '::base.html.twig' %}
-
 {% block body %}
     <div class="container">
         <div class="row">
             <h1>{{ company.name|title }}</h1>
         </div>
     </div>
-    {{ company.foodType|title }}
-    {{ company.contact|title }}
+    <div>FoodType: {{ company.foodType|title }}</div>
+    <div>Contact: {{ company.contact|title }} </div>
+    {% if company.menus is not empty %}
+      {% for menu in company.menus %}
+        <div><h1>Menu: {{ menu.name|title }}</h1>
+          <h3>Items:</h3>
+        {% for index, item in menu.items %}
+          <td>{{ item.name }}
+            ({% for ingredient in item.ingredients %} {{ ingredient.name }} {%endfor%})
+          </td>
+        {% endfor %}
+        </div>
+      {% endfor %}
+    {% endif %}
 {% endblock %}
 {% block javascripts%}
 <script type="text/javascript">
