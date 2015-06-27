@@ -2,32 +2,32 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Document\Company;
-use AppBundle\Document\Menu;
+use AppBundle\Document\Item;
+use AppBundle\Document\Ingredient;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MenuController extends Controller
+class IngredientController extends Controller
 {
     /**
-     * @Route("/menu/{id}", name="view_menu")
+     * @Route("/ingredient/{id}", name="view_ingredient")
      * @Template()
      */
     public function indexAction(Request $request, $id)
     {
         $repo = $this->get('doctrine_mongodb')
             ->getManager()
-            ->getRepository('AppBundle:Menu');
+            ->getRepository('AppBundle:Ingredient');
 
         $menu = $repo->find($id);
-        return ['menu' => $repo->find($id)];
+        return ['ingredient' => $repo->find($id)];
     }
 
     /**
-     * @Route("/menu/create/{id}", name="create_menu")
+     * @Route("/ingredient/create/{id}", name="create_ingredient")
      * @param Request $request
      * @return Response
      */
@@ -37,21 +37,19 @@ class MenuController extends Controller
 
             $repo = $this->get('doctrine_mongodb')
                 ->getManager()
-                ->getRepository('AppBundle:Company');
-            $company = $repo->find($id);
+                ->getRepository('AppBundle:Item');
+            $item = $repo->find($id);
 
-            if (null != $company) {
+            if (null != $item) {
                 $dm = $this->get('doctrine_mongodb')->getManager();
-                $menu = new Menu();
-                $dm->persist($menu);
+                $ingredient = new Ingredient();
+                $dm->persist($ingredient);
                 $dm->flush();
-                $menu->setName($request->request->get('menuName'));
-                $menus = $company->getMenus();
-                $menus[] = $menu;
-                $company->setMenus($menus);
-                $dm->persist($company);
+                $ingredient->setName($request->request->get('itemName'));
+                $item->addIngredient($ingredient);
+                $dm->persist($item);
                 $dm->flush();
-                return $this->redirect($this->generateUrl('view_company',['id'=>$company->getId()]));
+                return $this->redirect($this->generateUrl('view_item',['id'=>$item->getId()]));
             }
         }
 

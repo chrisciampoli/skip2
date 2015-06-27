@@ -7,18 +7,44 @@
     </div>
     <div>FoodType: {{ company.foodType|title }}</div>
     <div>Contact: {{ company.contact|title }} </div>
+    <button data-toggle="modal" data-target=".bs-example-modal-sm" type="button" style="margin-right: 15px;" class="pull-right btn btn-sm btn-success">Add Menu +</button>
     {% if company.menus is not empty %}
-      {% for menu in company.menus %}
-        <div><h1>Menu: {{ menu.name|title }}</h1>
-          <h3>Items:</h3>
-        {% for index, item in menu.items %}
-          <td>{{ item.name }}
-            ({% for ingredient in item.ingredients %} {{ ingredient.name }} {%endfor%})
-          </td>
-        {% endfor %}
-        </div>
-      {% endfor %}
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Control</th>
+            </thead>
+            <tbody>
+            {% for menu in company.menus %}
+                <tr>
+                    <td>{{ menu.name|title }}</td><td><a href="{{ path('view_menu', {'id': menu.id }) }}">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     {% endif %}
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Menu</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ path('create_menu', {'id': company.id}) }}">
+                        <div class="form-group">
+                            <label for="menuName">Name:</label>
+                            <input class="form-control" name="menuName" id="menuName" type="text" placeholder="Dinner, lunch, etc"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts%}
 <script type="text/javascript">
