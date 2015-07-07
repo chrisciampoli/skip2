@@ -16,6 +16,11 @@ class CompanyTable extends Component {
           return (
             <tr key={index}>
               <td>{item.name}</td>
+              <td>{item.address}</td>
+              <td>{item.street}</td>
+              <td>{item.city}</td>
+              <td>{item.state}</td>
+              <td>{item.phone}</td>
               <td>{item.food_type}</td>
               <td>{item.contact}</td>
               <td><a href={url}>View</a></td>
@@ -34,6 +39,11 @@ class CompanyTable extends Component {
                       <thead>
                       <tr>
                           <th>Company Name</th>
+                          <th>Address</th>
+                          <th>Street</th>
+                          <th>City</th>
+                          <th>State</th>
+                          <th>Phone</th>
                           <th>Food Type</th>
                           <th>Contact</th>
                           <th>Controls</th>

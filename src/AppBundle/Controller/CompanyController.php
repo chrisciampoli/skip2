@@ -39,6 +39,11 @@ class CompanyController extends Controller
             $company->setName($request->request->get('companyName'));
             $company->setFoodType($request->request->get('foodType'));
             $company->setContact($request->request->get('contact'));
+            $company->setAddress($request->request->get('address'));
+            $company->setStreet($request->request->get('street'));
+            $company->setCity($request->request->get('city'));
+            $company->setState($request->request->get('state'));
+            $company->setPhone($request->request->get('phone'));
             $dm->persist($company);
             $dm->flush();
         }

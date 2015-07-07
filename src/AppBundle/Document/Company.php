@@ -30,6 +30,47 @@ class Company
     protected $contact;
 
     /**
+     * @MongoDB\Integer
+     */
+    protected $address;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $street;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $city;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $state;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $phone;
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
      * @MongoDB\EmbedMany(targetDocument="AppBundle\Document\Menu")
      */
     protected $menus = [];
@@ -149,5 +190,69 @@ class Company
     public function removeMenu(\AppBundle\Document\Menu $menu)
     {
         $this->menus->removeElement($menu);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param mixed $street
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
     }
 }

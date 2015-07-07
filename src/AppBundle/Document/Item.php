@@ -20,6 +20,16 @@ class Item
     protected $name;
 
     /**
+     * @MongoDB\String
+     */
+    protected $allergen;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $calories;
+
+    /**
      * @MongoDB\EmbedMany(targetDocument="AppBundle\Document\Ingredient")
      */
     protected $ingredients = [];
@@ -89,5 +99,37 @@ class Item
     public function getIngredients()
     {
         return $this->ingredients;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllergen()
+    {
+        return $this->allergen;
+    }
+
+    /**
+     * @param mixed $allergen
+     */
+    public function setAllergen($allergen)
+    {
+        $this->allergen = $allergen;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCalories()
+    {
+        return $this->calories;
+    }
+
+    /**
+     * @param mixed $calories
+     */
+    public function setCalories($calories)
+    {
+        $this->calories = $calories;
     }
 }

@@ -46,6 +46,8 @@ class ItemController extends Controller
                 $dm->persist($item);
                 $dm->flush();
                 $item->setName($request->request->get('itemName'));
+                $item->setCalories($request->request->get('calories'));
+                $item->setAllergen($request->request->get('allergen'));
                 $menu->addItem($item);
                 $dm->persist($menu);
                 $dm->flush();

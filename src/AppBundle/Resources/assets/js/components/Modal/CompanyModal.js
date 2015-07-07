@@ -17,7 +17,7 @@ class CompanyModal extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 className="modal-title" id="myModalLabel">Add Menu</h4>
+                            <h4 className="modal-title" id="myModalLabel">Add Company</h4>
                         </div>
                         <div className="modal-body">
                           <form method="post" action="/company/create">
@@ -33,6 +33,26 @@ class CompanyModal extends Component {
                               <label htmlFor="companyName">Contact:</label>
                               <input className="form-control" name="contact" id="contact" type="text" placeholder="http://www.subway.com"/>
                             </div>
+                              <div className="form-group">
+                                  <label htmlFor="phone">Phone:</label>
+                                  <input className="form-control" name="phone" id="phone" type="text" placeholder="619 345 3432"/>
+                              </div>
+                              <div className="form-group">
+                                  <label htmlFor="address">Building Address:</label>
+                                  <input className="form-control" name="address" id="address" type="text" placeholder="9200"/>
+                              </div>
+                              <div className="form-group">
+                                  <label htmlFor="street">Street:</label>
+                                  <input className="form-control" name="street" id="street" type="text" placeholder="Lakeshore lane"/>
+                              </div>
+                              <div className="form-group">
+                                  <label htmlFor="city">City:</label>
+                                  <input className="form-control" name="city" id="city" type="text" placeholder="San Diego"/>
+                              </div>
+                              <div className="form-group">
+                                  <label htmlFor="state">State:</label>
+                                  <input className="form-control" name="state" id="state" type="text" placeholder="CA"/>
+                              </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                           </form>
                         </div>
